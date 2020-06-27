@@ -1,0 +1,55 @@
+\documentclass[11pt,reqno]{amsart}
+
+\usepackage{amsthm,amsmath,amssymb}
+\usepackage{mathtools}
+\usepackage{proof}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage[T1]{fontenc}
+\usepackage{courier}
+\usepackage{hyperref}
+\hypersetup{
+    hidelinks=true
+}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily\tiny, columns=fullflexible, language=Python, morekeywords={logical_and, log, exp, dot, sqrt, ones, identity}}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand\MyBox[2]{
+  \fbox{\lower0.75cm
+    \vbox to 1.7cm{\vfil
+      \hbox to 1.7cm{\hfil\parbox{1.4cm}{#1\\#2}\hfil}
+      \vfil}%
+  }%
+}
+\graphicspath{ {./} }
+
+\begin{document}
+
+\begin{center}
+\large\textbf{Assignment 1 \\ COMP515 Fall 2019} \\
+\normalsize\textbf{Distributed Computing Systems \\  Erhan Tezcan 0070881 \\ 22.02.2020} \\
+\end{center}
+
+\section*{Performance}
+\subsection*{Centeralized}
+
+Here I give file size, store time and retrieve time in order: \\
+\textbf{1KB} $134.4255,134.8253$ (ms) \\
+\textbf{2KB} $135.5062,133.433$ (ms) \\
+\textbf{3KB} $134.3881,134.4212$ (ms) \\
+\textbf{4KB} $134.0037,133.8959$ (ms) \\
+
+I did not draw a table because as it is seen above all of them are almost the same. This may be due to the overall packet size that travels, so perhaps we have to hit an upper limit to observe an increase on the duration of store and retrieve.
+
+\subsection*{Decenteralized}
+
+I did not have enough time to do the performance evaluation of this.
+
+\section*{Question}
+\textbf{Question:} How many nodes are traversed by \code{findSuccessor(id)} to find the successor if a system contains maximum of $N$ nodes?
+
+\textbf{Answer:} The lookup happens iteratively, by always forwarding the query to the successor. It is certainly possible that the searched successor is the predecessor of the first node. In that case, it will have to go through all the nodes in the ring. Therefore, our complexity is $O(n)$ where $n$ is the number of peers (nodes) in the ring.
+
+\end{document}
